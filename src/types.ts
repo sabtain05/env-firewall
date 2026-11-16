@@ -66,11 +66,8 @@ export type InferEnv<S extends EnvSchema> = {
 };
 
 export interface EnvGuardOptions {
-  /** Path to .env file (defaults to process.cwd() + '/.env') */
   envPath?: string;
-  /** Path to .env.example to warn/error on out-of-sync keys */
   examplePath?: string;
-  /** Whether to load .env file from disk (default: true) */
   loadDotEnv?: boolean;
   source?: Record<string, string | undefined>;
   freeze?: boolean;

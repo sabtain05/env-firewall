@@ -72,9 +72,7 @@ export interface EnvGuardOptions {
   examplePath?: string;
   /** Whether to load .env file from disk (default: true) */
   loadDotEnv?: boolean;
-  /** Custom source object instead of process.env (great for testing) */
   source?: Record<string, string | undefined>;
-  /** Deep-freeze the returned env object so it cannot be mutated at runtime (default: true) */
   freeze?: boolean;
   exitOnError?: boolean;
 }

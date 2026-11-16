@@ -1,0 +1,46 @@
+{
+  "name": "env-firewall",
+  "version": "1.0.0",
+  "description": "Zero-dependency runtime environment variable parser, type-caster, and boot-time firewall.",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist/types",
+    "build:esm": "tsc --module esnext --moduleResolution bundler --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --moduleResolution node --outDir dist/cjs",
+    "build": "npm run clean && npm run build:types && npm run build:esm && npm run build:cjs",
+    "test": "npm run build && node --test dist/cjs/tests/**/*.test.js",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "env",
+    "dotenv",
+    "environment",
+    "validation",
+    "typescript",
+    "zero-dependency",
+    "config"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

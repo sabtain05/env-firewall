@@ -16,8 +16,7 @@ export function parseDotEnvContent(content: string): Record<string, string> {
   for (const rawLine of lines) {
     const line = rawLine.trim();
     if (!line || line.startsWith('#')) continue;
-
-    // Strip optional `export ` prefix
+    
     const cleaned = line.startsWith('export ') ? line.slice(7).trim() : line;
     const eqIndex = cleaned.indexOf('=');
     if (eqIndex === -1) continue;
@@ -38,7 +37,6 @@ export function parseDotEnvContent(content: string): Record<string, string> {
         value = value.replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\"/g, '"');
       }
     } else {
-      // Strip inline comment on unquoted value: FOO=bar # comment
       const commentIdx = value.indexOf(' #');
       if (commentIdx !== -1) {
         value = value.slice(0, commentIdx).trim();

@@ -125,7 +125,6 @@ export function castAndValidate(
     return { ok: true, value: trimmed };
   }
 
-  // 5. JSON casting
   if (rule.type === 'json') {
     try {
       return { ok: true, value: JSON.parse(trimmed) };
@@ -143,7 +142,6 @@ export function castAndValidate(
     }
   }
 
-  // 6. String casting & constraints
   if (rule.minLength !== undefined && trimmed.length < rule.minLength) {
     return {
       ok: false,

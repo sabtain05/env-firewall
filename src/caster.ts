@@ -54,7 +54,6 @@ export function castAndValidate(
     };
   }
 
-  // 3. Number casting
   if (rule.type === 'number') {
     const num = Number(trimmed);
     if (Number.isNaN(num) || !Number.isFinite(num)) {
@@ -108,7 +107,6 @@ export function castAndValidate(
     return { ok: true, value: num };
   }
 
-  // 4. Enum casting
   if (rule.type === 'enum') {
     if (!rule.values.includes(trimmed)) {
       return {

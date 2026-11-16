@@ -97,7 +97,6 @@ export function checkEnvSync(
         fixHint: `Add ${exampleKey} to your createEnv({ ... }) schema or remove it from .env.example.`,
       });
     } else if (!hasValue && schema[exampleKey].default === undefined && !schema[exampleKey].optional) {
-      // Already handled by missing check, avoid duplicate noise
       continue;
     } else if (!hasValue && !schema[exampleKey].optional) {}
   }

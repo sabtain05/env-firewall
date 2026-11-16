@@ -18,12 +18,12 @@
     "LICENSE"
   ],
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist/types",
     "build:esm": "tsc --module esnext --moduleResolution bundler --outDir dist/esm",
     "build:cjs": "tsc --module commonjs --moduleResolution node --outDir dist/cjs",
     "build": "npm run clean && npm run build:types && npm run build:esm && npm run build:cjs",
-    "test": "npm run build && node --test dist/cjs/tests/**/*.test.js",
+    "test": "npm run build && node --test \"dist/cjs/tests/**/*.test.js\"",
     "prepublishOnly": "npm test"
   },
   "keywords": [

@@ -41,10 +41,6 @@ export type EnvRule =
 
 export type EnvSchema = Record<string, EnvRule>;
 
-/**
- * Infers the exact TypeScript type for a single rule.
- * Adds `| undefined` only if `optional: true` is set without a `default`.
- */
 export type InferRuleType<R extends EnvRule> = R extends StringRule
   ? string
   : R extends NumberRule

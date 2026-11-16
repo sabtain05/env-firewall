@@ -63,10 +63,6 @@ export function loadDotEnvFile(filePath?: string): Record<string, string> {
   return parseDotEnvContent(content);
 }
 
-/**
- * Compares keys in .env.example (if provided or present) against both
- * the runtime environment and the defined schema to catch drift early.
- */
 export function checkEnvSync(
   schema: EnvSchema,
   resolvedEnv: Record<string, string | undefined>,

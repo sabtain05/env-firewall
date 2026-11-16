@@ -11,7 +11,6 @@ export function castAndValidate(
 ): CastResult {
   const trimmed = raw?.trim();
 
-  // 1. Handle missing or empty values
   if (trimmed === undefined || trimmed === '') {
     if ('default' in rule && rule.default !== undefined) {
       return { ok: true, value: rule.default };
@@ -33,7 +32,6 @@ export function castAndValidate(
     };
   }
 
-  // 2. Boolean casting ("true"/"1" -> true, "false"/"0" -> false)
   if (rule.type === 'boolean') {
     const lower = trimmed.toLowerCase();
     if (lower === 'true' || lower === '1') {

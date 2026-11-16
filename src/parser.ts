@@ -99,19 +99,12 @@ export function checkEnvSync(
     } else if (!hasValue && schema[exampleKey].default === undefined && !schema[exampleKey].optional) {
       // Already handled by missing check, avoid duplicate noise
       continue;
-    } else if (!hasValue && !schema[exampleKey].optional) {
-      // Key exists in .env.example without a local .env override (falling back to default)
-      // Only flag if explicitly missing from local env when example requires it
-    }
+    } else if (!hasValue && !schema[exampleKey].optional) {}
   }
 
   return issues;
 }
 
-/**
- * Recursively freezes an object (including parsed JSON objects/arrays)
- * so environment variables cannot be mutated anywhere in the application.
- */
 export function deepFreeze<T>(obj: T): T {
   if (obj === null || typeof obj !== 'object') {
     return obj;

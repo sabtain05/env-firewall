@@ -55,13 +55,11 @@ export function createEnv<S extends EnvSchema>(
     }
   }
 
-  // 3. Check .env.example sync drift (if .env.example exists or examplePath is passed)
   if (!source || examplePath) {
     const syncIssues = checkEnvSync(schema, rawEnv, examplePath);
     issues.push(...syncIssues);
   }
 
-  // 4. Block boot if any validation or sync issue was found
   if (issues.length > 0) {
     const error = new EnvFirewallError(issues);
     if (exitOnError) {
@@ -71,7 +69,6 @@ export function createEnv<S extends EnvSchema>(
     throw error;
   }
 
-  // 5. Freeze the resulting object to prevent runtime tampering
   const typedEnv = parsed as InferEnv<S>;
   return freeze ? deepFreeze(typedEnv) : typedEnv;
 }

@@ -18,9 +18,6 @@ export type {
   ValidationIssue,
 } from './types';
 
-/**
- * Parses, type-casts, validates, sync-checks, and freezes environment variables at boot time.
- */
 export function createEnv<S extends EnvSchema>(
   schema: S,
   options: EnvGuardOptions = {}
@@ -34,7 +31,6 @@ export function createEnv<S extends EnvSchema>(
     exitOnError = false,
   } = options;
 
-  // 1. Merge .env file values with runtime environment (runtime process.env takes precedence)
   const fileVars = !source && loadDotEnv ? loadDotEnvFile(envPath) : {};
   const rawEnv: Record<string, string | undefined> = source
     ? { ...source }
@@ -43,7 +39,6 @@ export function createEnv<S extends EnvSchema>(
   const issues: ValidationIssue[] = [];
   const parsed: Record<string, unknown> = {};
 
-  // 2. Validate and cast every declared schema key
   for (const key of Object.keys(schema)) {
     const rule = schema[key];
     const result = castAndValidate(key, rawEnv[key], rule);

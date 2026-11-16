@@ -51,9 +51,6 @@ export function parseDotEnvContent(content: string): Record<string, string> {
   return result;
 }
 
-/**
- * Reads a .env file if it exists on disk; returns empty object if absent.
- */
 export function loadDotEnvFile(filePath?: string): Record<string, string> {
   const resolved = filePath ? path.resolve(filePath) : path.resolve(process.cwd(), '.env');
   if (!fs.existsSync(resolved)) {

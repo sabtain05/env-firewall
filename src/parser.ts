@@ -2,13 +2,6 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { EnvSchema, ValidationIssue } from './types';
 
-/**
- * Zero-dependency .env parser supporting:
- * - Comments (# ...) and inline comments on unquoted values
- * - Single, double, and backtick quotes
- * - Optional `export KEY=VALUE` syntax
- * - Escaped newlines (\n) inside double quotes
- */
 export function parseDotEnvContent(content: string): Record<string, string> {
   const result: Record<string, string> = {};
   const lines = content.split(/\r?\n/);
@@ -16,7 +9,7 @@ export function parseDotEnvContent(content: string): Record<string, string> {
   for (const rawLine of lines) {
     const line = rawLine.trim();
     if (!line || line.startsWith('#')) continue;
-    
+
     const cleaned = line.startsWith('export ') ? line.slice(7).trim() : line;
     const eqIndex = cleaned.indexOf('=');
     if (eqIndex === -1) continue;

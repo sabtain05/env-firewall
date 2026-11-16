@@ -76,7 +76,6 @@ export interface EnvGuardOptions {
   source?: Record<string, string | undefined>;
   /** Deep-freeze the returned env object so it cannot be mutated at runtime (default: true) */
   freeze?: boolean;
-  /** Exit process immediately with code 1 on validation failure instead of throwing (default: false) */
   exitOnError?: boolean;
 }
 
